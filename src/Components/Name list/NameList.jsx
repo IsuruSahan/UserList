@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import NameListItem from "./NameListItem";
 
 function NameList(){
 
+
+  const [loadData, SetLoadData] = useState(new Date());
   const [nameList, setNameList] = useState([
     { 
   id: 1,
@@ -24,6 +26,14 @@ function NameList(){
   
   ]);
 
+  useEffect(() => {
+    fetch("https://randomuser.me/api").then((response) => {
+      return response.json();
+    }).then(responseData => {
+      setNameList((nameList) => [...nameList,responseData.results[0]]);
+    });
+  },[loadData]);
+
 
 
 const nameListComponent = () => {
@@ -44,16 +54,7 @@ const nameListComponent = () => {
 
 
 const addUserHandler = () => {
-  const newUser = {
-    id: 1,
-    name: {title: "mr",first: "Arlo",last: "Clarke",},
-    location: {city: "Whanganui",},
-    email: "arlo.clarke@example.com",
-    dob: {date: "1961-05-21T22:53:09.815Z",age: 26,},
-    picture: {medium: "https://randomuser.me/api/portraits/med/men/65.jpg",},
-  };
-
-  setNameList((nameList) => nameList.concat(newUser));
+  SetLoadData(new Date());
 
 };
 

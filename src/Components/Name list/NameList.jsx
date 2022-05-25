@@ -6,7 +6,7 @@ function NameList(){
   const [nameList, setNameList] = useState([
     { 
   id: 1,
-  name: {title: "mr",first: "Brad",last: "gibson",},
+  name: {title: "mr",first: "Brad",last: "jibson",},
   location: {city: "kilcoole",},
   email: "brad.gibson@example.com",
   dob: {date: "1993-07-20T09:44:18.674Z",age: 26,},
